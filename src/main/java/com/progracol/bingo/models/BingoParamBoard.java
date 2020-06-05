@@ -1,56 +1,86 @@
 package com.progracol.bingo.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name="bingo_param_board")
 public class BingoParamBoard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer board_id;
-    private String board_numbers;
+    @Column(name = "board_id")
+    private Integer boardId;
+    @Column(name = "board_numbers")
+    private String boardNumbers;
+    @Column(name = "status")
     private String status;
 
-    @Column(name="CREATED_BY", nullable = true)
-    private Integer created_by;
+    @Column(name="created_by", nullable = true)
+    private Integer createdBy;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="LAST_UPDATED_AT", nullable = true)
-    private Date last_updated_at;
-    @Column(name="LAST_UPDATED_BY", nullable = true)
-    private Integer last_updated_by;
-
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="DELETED_AT", nullable = true)
-    private Date deleted_at;
-    @Column(name="DELETED_BY", nullable = true)
-    private Integer deleted_by;
+    @Column(name="last_updated_at", nullable = true)
+    private Date lastUpdatedAt;
+    @Column(name="last_updated_by", nullable = true)
+    private Integer lastUpdatedBy;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="CREATED_AT", nullable = true)
-    private Date created_at;
+    @Column(name="deleted_at", nullable = true)
+    private Date deletedAt;
+    @Column(name="deleted_by", nullable = true)
+    private Integer deletedBy;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="created_at", nullable = true)
+    private Date createdAt;
 
     public BingoParamBoard() {
 
     }
 
-    public Integer getBoard_id() {
-        return board_id;
+    public Integer getBoardId() {
+        return boardId;
     }
 
-    public void setBoard_id(Integer board_id) {
-        this.board_id = board_id;
+    public void setBoardId(Integer boardId) {
+        this.boardId = boardId;
     }
 
-    public String getBoard_numbers() {
-        return board_numbers;
+    /*public String getBoardNumbers() {
+        return boardNumbers;
     }
 
-    public void setBoard_numbers(String board_numbers) {
-        this.board_numbers = board_numbers;
+    public void setBoardNumbers(String boardNumbers) {
+        this.boardNumbers = boardNumbers;
+    }*/
+
+    public List<Integer> getBoardNumbers() {
+        List<Integer> lstVals = new ArrayList<Integer>();
+        int val = 0;
+
+        for(String field : this.boardNumbers.split(",")) {
+            try {
+                val = Integer.parseInt(field);
+            }
+            // If the String contains other thing that digits and commas
+            catch (NumberFormatException e) {
+            }
+            lstVals.add(val);
+        }
+
+        return lstVals;
     }
+
+    public void setBoardNumbers(List<Integer> vals) {
+        String newVals = "";
+        for(int i : vals) {
+            newVals.concat(String.valueOf(i));
+        }
+        this.boardNumbers = newVals;
+    }
+
 
     public String getStatus() {
         return status;
@@ -60,51 +90,51 @@ public class BingoParamBoard {
         this.status = status;
     }
 
-    public Integer getCreated_by() {
-        return created_by;
+    public Integer getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreated_by(Integer created_by) {
-        this.created_by = created_by;
+    public void setCreatedBy(Integer createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public Date getLast_updated_at() {
-        return last_updated_at;
+    public Date getLastUpdatedAt() {
+        return lastUpdatedAt;
     }
 
-    public void setLast_updated_at(Date last_updated_at) {
-        this.last_updated_at = last_updated_at;
+    public void setLastUpdatedAt(Date lastUpdatedAt) {
+        this.lastUpdatedAt = lastUpdatedAt;
     }
 
-    public Integer getLast_updated_by() {
-        return last_updated_by;
+    public Integer getLastUpdatedBy() {
+        return lastUpdatedBy;
     }
 
-    public void setLast_updated_by(Integer last_updated_by) {
-        this.last_updated_by = last_updated_by;
+    public void setLastUpdatedBy(Integer lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
     }
 
-    public Date getDeleted_at() {
-        return deleted_at;
+    public Date getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleted_at(Date deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
     }
 
-    public Integer getDeleted_by() {
-        return deleted_by;
+    public Integer getDeletedBy() {
+        return deletedBy;
     }
 
-    public void setDeleted_by(Integer deleted_by) {
-        this.deleted_by = deleted_by;
+    public void setDeletedBy(Integer deletedBy) {
+        this.deletedBy = deletedBy;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

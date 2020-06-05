@@ -1,7 +1,6 @@
 package com.progracol.bingo.controllers;
 
 import com.progracol.bingo.models.BingoParamBoard;
-import com.progracol.bingo.repositories.BingoParamBoardRepository;
 import com.progracol.bingo.services.BingoParamBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
