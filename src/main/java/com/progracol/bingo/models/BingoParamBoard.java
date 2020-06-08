@@ -67,7 +67,9 @@ public class BingoParamBoard {
             // If the String contains other thing that digits and commas
             catch (NumberFormatException e) {
             }
-            lstVals.add(val);
+            if (val != 0){
+                lstVals.add(val);
+            }
         }
 
         return lstVals;

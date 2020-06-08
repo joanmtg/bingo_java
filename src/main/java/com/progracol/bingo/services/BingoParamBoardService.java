@@ -8,8 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class BingoParamBoardService {
@@ -29,5 +28,19 @@ public class BingoParamBoardService {
         } else {
             return new ArrayList<BingoParamBoard>();
         }
+    }
+
+    public List<BingoParamBoard> getCustomBoard(Integer boardId){
+        return bingoParamBoardRepository.getCustomBoard(boardId);
+    }
+
+    public List<BingoParamBoard> getWinners(List<Integer> winnerNumbers){
+
+        /*Collection<Integer> collection = new ArrayList<Integer>(winnerNumbers);
+        return bingoParamBoardRepository.getWinners(collection);*/
+
+        return bingoParamBoardRepository.getWinners(winnerNumbers.toString()
+                .replace('[', ' ').
+                        replace(']', ' ').trim());
     }
 }

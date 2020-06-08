@@ -6,20 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/bingo/board")
+@RequestMapping("api/bingo")
 public class BingoParamBoardController {
     @Autowired
     private BingoParamBoardService bingoParamBoardService;
 
-    @GetMapping
+    @GetMapping(path="/board")
     public ResponseEntity<List<BingoParamBoard>> getAllBoards(
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "50") Integer pageSize)
@@ -28,4 +25,21 @@ public class BingoParamBoardController {
 
         return new ResponseEntity<List<BingoParamBoard>>(list, new HttpHeaders(), HttpStatus.OK);
     }
+
+    /*@PostMapping(path="/winners")
+    public ResponseEntity<List<BingoParamBoard>> getCustomBoard(@RequestBody final List<Integer> board)
+    {
+        List<BingoParamBoard> list = bingoParamBoardService.getCustomBoard(board.get(0));
+
+        return new ResponseEntity<List<BingoParamBoard>>(list, new HttpHeaders(), HttpStatus.OK);
+    }*/
+
+    @PostMapping(path="/winners")
+    public ResponseEntity<List<BingoParamBoard>> getWinners(@RequestBody final List<Integer> winnerNumbers)
+    {
+        List<BingoParamBoard> list = bingoParamBoardService.getWinners(winnerNumbers);
+
+        return new ResponseEntity<List<BingoParamBoard>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+
 }
