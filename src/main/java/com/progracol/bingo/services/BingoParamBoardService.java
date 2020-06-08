@@ -46,10 +46,8 @@ public class BingoParamBoardService {
             indexEnd++;
         }
 
-        System.out.println(indexEnd);
-
         if (resultingBoards.size() > winnersLimit){
-            resultingBoards = resultingBoards.subList(0, winnersLimit - 1);
+            resultingBoards = resultingBoards.subList(0, winnersLimit);
         }
 
         return resultingBoards;
