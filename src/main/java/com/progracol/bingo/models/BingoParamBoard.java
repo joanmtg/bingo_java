@@ -59,8 +59,11 @@ public class BingoParamBoard {
     public List<Integer> getBoardNumbers() {
         List<Integer> lstVals = new ArrayList<Integer>();
         int val = 0;
+        String numbersValidString = this.boardNumbers.replaceAll("\\{","")
+                                                     .replaceAll("}","")
+                                                     .replaceAll("NULL,","");
 
-        for(String field : this.boardNumbers.replaceAll("\\{","").replaceAll("}","").replaceAll("NULL,","").split(",")) {
+        for(String field : numbersValidString.split(",") ) {
             try {
                 val = Integer.parseInt(field);
             }
