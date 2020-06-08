@@ -16,7 +16,6 @@ public class BingoParamBoardService {
     @Autowired
     private BingoParamBoardRepository bingoParamBoardRepository;
 
-
     public List<BingoParamBoard> getAllBoards(Integer pageNo, Integer pageSize)
     {
         Pageable paging = PageRequest.of(pageNo, pageSize);
@@ -28,10 +27,6 @@ public class BingoParamBoardService {
         } else {
             return new ArrayList<BingoParamBoard>();
         }
-    }
-
-    public List<BingoParamBoard> getCustomBoard(Integer boardId){
-        return bingoParamBoardRepository.getCustomBoard(boardId);
     }
 
     public List<BingoParamBoard> getWinners(List<Integer> winnerNumbers){

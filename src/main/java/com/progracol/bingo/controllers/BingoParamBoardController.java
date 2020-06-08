@@ -26,14 +26,6 @@ public class BingoParamBoardController {
         return new ResponseEntity<List<BingoParamBoard>>(list, new HttpHeaders(), HttpStatus.OK);
     }
 
-    /*@PostMapping(path="/winners")
-    public ResponseEntity<List<BingoParamBoard>> getCustomBoard(@RequestBody final List<Integer> board)
-    {
-        List<BingoParamBoard> list = bingoParamBoardService.getCustomBoard(board.get(0));
-
-        return new ResponseEntity<List<BingoParamBoard>>(list, new HttpHeaders(), HttpStatus.OK);
-    }*/
-
     @PostMapping(path="/winners")
     public ResponseEntity<List<BingoParamBoard>> getWinners(@RequestBody final List<Integer> winnerNumbers)
     {
