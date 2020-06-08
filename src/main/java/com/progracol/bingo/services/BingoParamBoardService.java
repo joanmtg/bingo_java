@@ -30,16 +30,14 @@ public class BingoParamBoardService {
     }
 
     public List<BingoParamBoard> getWinners(List<Integer> winnerNumbers){
-        int boardSize = 25, boardLimit = 75;
+        int boardSize = 25, boardLimit = winnerNumbers.size(), winnersLimit = 100;
         int indexEnd = boardSize - 1;
-        int winnersLimit = 100;
 
         List<Integer> numbersToEvaluate = winnerNumbers.subList(0, indexEnd);
         List<BingoParamBoard> resultingBoards = bingoParamBoardRepository.getWinners(processNumbersList(numbersToEvaluate));
 
         while ( (resultingBoards.size() < winnersLimit) &&
-                (indexEnd <= winnerNumbers.size()) &&
-                (indexEnd <= boardLimit)){
+                (indexEnd <= boardLimit) ) {
 
             numbersToEvaluate = winnerNumbers.subList(0, indexEnd);
             resultingBoards = bingoParamBoardRepository.getWinners(processNumbersList(numbersToEvaluate));
