@@ -51,7 +51,7 @@ public class BingoParamBoardService {
         return resultingBoards;
     }
 
-    static String processNumbersList(List<Integer> numbersList){
+    private static String processNumbersList(List<Integer> numbersList){
         return numbersList.toString()
                           .replaceAll("\\[", "")
                           .replaceAll("]", "");

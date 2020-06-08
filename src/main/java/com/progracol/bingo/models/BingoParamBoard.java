@@ -48,14 +48,6 @@ public class BingoParamBoard {
         this.boardId = boardId;
     }
 
-    /*public String getBoardNumbers() {
-        return boardNumbers;
-    }
-
-    public void setBoardNumbers(String boardNumbers) {
-        this.boardNumbers = boardNumbers;
-    }*/
-
     public List<Integer> getBoardNumbers() {
         List<Integer> lstVals = new ArrayList<Integer>();
         int val = 0;
@@ -86,7 +78,6 @@ public class BingoParamBoard {
         }
         this.boardNumbers = newVals;
     }
-
 
     public String getStatus() {
         return status;
