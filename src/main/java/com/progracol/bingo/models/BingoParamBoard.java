@@ -60,7 +60,7 @@ public class BingoParamBoard {
         List<Integer> lstVals = new ArrayList<Integer>();
         int val = 0;
 
-        for(String field : this.boardNumbers.split(",")) {
+        for(String field : this.boardNumbers.replaceAll("\\{","").replaceAll("}","").replaceAll("NULL,","").split(",")) {
             try {
                 val = Integer.parseInt(field);
             }
