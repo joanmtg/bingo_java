@@ -61,7 +61,8 @@ public class BingoParamBoard {
         int val = 0;
         String numbersValidString = this.boardNumbers.replaceAll("\\{","")
                                                      .replaceAll("}","")
-                                                     .replaceAll("NULL,","");
+                                                     .replaceAll("NULL,","")
+                                                     .replaceAll("\"", "" ) ;
 
         for(String field : numbersValidString.split(",") ) {
             try {

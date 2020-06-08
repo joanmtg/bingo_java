@@ -30,10 +30,35 @@ public class BingoParamBoardService {
     }
 
     public List<BingoParamBoard> getWinners(List<Integer> winnerNumbers){
+        int boardSize = 25, boardLimit = 75;
+        int indexEnd = boardSize - 1;
+        int winnersLimit = 100;
 
-        return bingoParamBoardRepository.getWinners(winnerNumbers.toString()
-                                                    .replaceAll("\\[", "")
-                                                    .replaceAll("]", "")
-                                                    .trim());
+        List<Integer> numbersToEvaluate = winnerNumbers.subList(0, indexEnd);
+        List<BingoParamBoard> resultingBoards = bingoParamBoardRepository.getWinners(processNumbersList(numbersToEvaluate));
+
+        while ( (resultingBoards.size() < winnersLimit) &&
+                (indexEnd <= winnerNumbers.size()) &&
+                (indexEnd <= boardLimit)){
+
+            numbersToEvaluate = winnerNumbers.subList(0, indexEnd);
+            resultingBoards = bingoParamBoardRepository.getWinners(processNumbersList(numbersToEvaluate));
+            indexEnd++;
+        }
+
+        System.out.println(indexEnd);
+
+        if (resultingBoards.size() > winnersLimit){
+            resultingBoards = resultingBoards.subList(0, winnersLimit - 1);
+        }
+
+        return resultingBoards;
+    }
+
+    static String processNumbersList(List<Integer> numbersList){
+        return numbersList.toString()
+                          .replaceAll("\\[", "")
+                          .replaceAll("]", "");
+
     }
 }
