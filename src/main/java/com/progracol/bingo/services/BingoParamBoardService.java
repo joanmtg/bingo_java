@@ -37,8 +37,8 @@ public class BingoParamBoardService {
     public List<BingoParamBoard> getWinners(List<Integer> winnerNumbers){
 
         return bingoParamBoardRepository.getWinners(winnerNumbers.toString()
-                                                    .replace('[', ' ')
-                                                    .replace(']', ' ').
-                                                    trim());
+                                                    .replaceAll("\\[", "")
+                                                    .replaceAll("]", "")
+                                                    .trim());
     }
 }
