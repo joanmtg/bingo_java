@@ -36,10 +36,12 @@ public class BingoParamBoard {
     @Column(name="created_at", nullable = true)
     private Date createdAt;
 
+    //Constructor
     public BingoParamBoard() {
 
     }
 
+    // Getters y Setters
     public Integer getBoardId() {
         return boardId;
     }
@@ -47,6 +49,11 @@ public class BingoParamBoard {
     public void setBoardId(Integer boardId) {
         this.boardId = boardId;
     }
+
+    /**
+     * Getter personalizado para boardNumbers, JPA no permite mapear arreglos en una columna
+     * @return List<Integer> convertido desde el String guardadod boardNumbers
+     */
 
     public List<Integer> getBoardNumbers() {
         List<Integer> lstVals = new ArrayList<Integer>();
@@ -70,6 +77,11 @@ public class BingoParamBoard {
 
         return lstVals;
     }
+
+    /**
+     * Setter personalizado para boardNumbers:
+     * @param vals List<Integer> y lo guarda como String
+     */
 
     public void setBoardNumbers(List<Integer> vals) {
         String newVals = "";
