@@ -29,9 +29,8 @@ public class BingoParamBoardController {
     @PostMapping(path="/winners")
     public ResponseEntity<List<BingoParamBoard>> getWinners(@RequestBody final List<Integer> winnerNumbers)
     {
-        List<BingoParamBoard> list = bingoParamBoardService.getWinners(winnerNumbers);
-
         if(winnerNumbers.size() == 75){
+            List<BingoParamBoard> list = bingoParamBoardService.getWinners(winnerNumbers);
             return new ResponseEntity<List<BingoParamBoard>>(list, new HttpHeaders(), HttpStatus.OK);
         }else{
             return new ResponseEntity<>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
