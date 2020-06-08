@@ -22,7 +22,6 @@ public class BingoParamBoardController {
             @RequestParam(defaultValue = "50") Integer pageSize)
     {
         List<BingoParamBoard> list = bingoParamBoardService.getAllBoards(pageNo, pageSize);
-
         return new ResponseEntity<List<BingoParamBoard>>(list, new HttpHeaders(), HttpStatus.OK);
     }
 
@@ -32,7 +31,11 @@ public class BingoParamBoardController {
     {
         List<BingoParamBoard> list = bingoParamBoardService.getWinners(winnerNumbers);
 
-        return new ResponseEntity<List<BingoParamBoard>>(list, new HttpHeaders(), HttpStatus.OK);
+        if(winnerNumbers.size() == 75){
+            return new ResponseEntity<List<BingoParamBoard>>(list, new HttpHeaders(), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 }
